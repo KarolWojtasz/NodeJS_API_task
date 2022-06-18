@@ -19,13 +19,11 @@ const makeQuestionRepository = fileName => {
 
   const addQuestion = async question => {
     const questions = await getQuestions()
-
     if (question.hasOwnProperty('author') && question.hasOwnProperty('summary') && question.hasOwnProperty('answers')) {
       question.id = uuid.v4()
       questions.push(question)
       await writeFile(fileName, JSON.stringify(questions), { encoding: 'utf-8' })
       return { "id": question.id };
-
     } else {
       return {};
     }
